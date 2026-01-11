@@ -1,0 +1,14 @@
+abitaX_Android_Project/
+├── app/
+│   ├── src/main/java/com/abitax/
+│   │   ├── MainActivity.java      # Pantalla principal con botones
+│   │   ├── WebViewActivity.java   # Navegador web integrado
+│   │   └── MapActivity.java       # Mapa nativo (opcional)
+│   ├── src/main/assets/
+│   │   └── index.html            # Aplicación web completa (HTML/CSS/JS)
+│   └── src/main/res/
+│       ├── layout/               # Diseños XML de actividades
+│       ├── values/               # Recursos (strings, colors, styles)
+│       └── drawable/            # Iconos e imágenes
+├── gradle/
+└── build.gradle                 # Configuración de Gradle

@@ -1,0 +1,71 @@
+abitax-android-app.zip/
+├── app/
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/com/abitax/
+│   │   │   │   ├── MainActivity.kt
+│   │   │   │   ├── models/
+│   │   │   │   │   ├── User.kt
+│   │   │   │   │   ├── Service.kt
+│   │   │   │   │   ├── Property.kt
+│   │   │   │   │   └── Professional.kt
+│   │   │   │   ├── activities/
+│   │   │   │   │   ├── HomeActivity.kt
+│   │   │   │   │   ├── MapActivity.kt
+│   │   │   │   │   ├── LoginActivity.kt
+│   │   │   │   │   ├── RegisterActivity.kt
+│   │   │   │   │   ├── ServiceDetailActivity.kt
+│   │   │   │   │   └── PropertyDetailActivity.kt
+│   │   │   │   ├── fragments/
+│   │   │   │   │   ├── HomeFragment.kt
+│   │   │   │   │   ├── ServicesFragment.kt
+│   │   │   │   │   ├── PropertiesFragment.kt
+│   │   │   │   │   ├── ProfessionalsFragment.kt
+│   │   │   │   │   └── ProfileFragment.kt
+│   │   │   │   ├── adapters/
+│   │   │   │   │   ├── ServicesAdapter.kt
+│   │   │   │   │   ├── PropertiesAdapter.kt
+│   │   │   │   │   └── ProfessionalsAdapter.kt
+│   │   │   │   └── utils/
+│   │   │   │       ├── ApiClient.kt
+│   │   │   │       ├── Constants.kt
+│   │   │   │       └── SharedPrefManager.kt
+│   │   │   ├── res/
+│   │   │   │   ├── layout/
+│   │   │   │   │   ├── activity_main.xml
+│   │   │   │   │   ├── activity_home.xml
+│   │   │   │   │   ├── activity_map.xml
+│   │   │   │   │   ├── activity_login.xml
+│   │   │   │   │   ├── activity_register.xml
+│   │   │   │   │   ├── fragment_home.xml
+│   │   │   │   │   ├── fragment_services.xml
+│   │   │   │   │   ├── fragment_properties.xml
+│   │   │   │   │   ├── fragment_professionals.xml
+│   │   │   │   │   ├── fragment_profile.xml
+│   │   │   │   │   ├── item_service.xml
+│   │   │   │   │   ├── item_property.xml
+│   │   │   │   │   └── item_professional.xml
+│   │   │   │   ├── drawable/
+│   │   │   │   │   ├── ic_logo.xml
+│   │   │   │   │   ├── bg_gradient.xml
+│   │   │   │   │   ├── btn_primary.xml
+│   │   │   │   │   └── ic_launcher_foreground.xml
+│   │   │   │   ├── values/
+│   │   │   │   │   ├── colors.xml
+│   │   │   │   │   ├── strings.xml
+│   │   │   │   │   ├── styles.xml
+│   │   │   │   │   └── dimens.xml
+│   │   │   │   └── mipmap/
+│   │   │   ├── AndroidManifest.xml
+│   │   │   └── google-services.json
+│   │   └── test/
+├── gradle/
+│   └── wrapper/
+│       ├── gradle-wrapper.jar
+│       └── gradle-wrapper.properties
+├── build.gradle
+├── settings.gradle
+├── gradle.properties
+├── gradlew
+├── gradlew.bat
+└── README.md
