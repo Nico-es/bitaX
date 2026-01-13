@@ -13,13 +13,17 @@ export default function Header() {
 
   return (
     <header className="bg-white shadow-md sticky top-0 z-50">
+      <div className="header-banner"></div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <Link to="/" className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-gradient-to-br from-green-ge to-blue-ge rounded-lg flex items-center justify-center">
+          <Link to="/" className="flex items-center gap-3">
+            <div className="logo-badge w-12 h-12 flex items-center justify-center shadow-md">
               <span className="text-2xl">🇬🇶</span>
             </div>
-            <span className="text-xl font-bold text-gray-900">abitaX</span>
+            <div className="flex flex-col">
+              <span className="text-xl font-extrabold bg-gradient-to-r from-green-ge to-blue-ge bg-clip-text text-transparent">abitaX</span>
+              <span className="text-xs text-gray-500 font-medium">Guinea Ecuatorial</span>
+            </div>
           </Link>
 
           <nav className="hidden md:flex items-center gap-6">

@@ -49,6 +49,11 @@
     --gradiente-dorado: linear-gradient(135deg, var(--dorado), #FFC107);
     --gradiente-hero: linear-gradient(135deg, rgba(0, 122, 51, 0.95), rgba(0, 85, 164, 0.9));
     --gradiente-verde-azul: linear-gradient(135deg, var(--verde-ge), var(--azul-ge));
+
+    /* Gradiente inspirado en la bandera de Guinea Ecuatorial */
+    --gradiente-bandera: linear-gradient(to right, var(--rojo-ge) 0%, var(--rojo-ge) 30%, var(--verde-ge) 30%, var(--verde-ge) 45%, white 45%, white 55%, var(--verde-ge) 55%, var(--verde-ge) 70%, var(--azul-ge) 70%, var(--azul-ge) 100%);
+    --gradiente-bandera-vertical: linear-gradient(to bottom, var(--verde-ge) 0%, var(--verde-ge) 33%, white 33%, white 66%, var(--rojo-ge) 66%);
+    --gradiente-hero-bandera: linear-gradient(135deg, rgba(206, 17, 38, 0.1) 0%, rgba(0, 122, 51, 0.95) 20%, rgba(0, 85, 164, 0.9) 80%);
 }
 
 /* =============================================
@@ -63,7 +68,7 @@
 body {
     font-family: 'Inter', sans-serif;
     color: var(--texto-oscuro);
-    background: var(--fondo-blanco);
+    background: linear-gradient(to bottom, #f8fffe 0%, #f0f9f4 50%, #ffffff 100%);
     line-height: 1.6;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
@@ -420,4 +425,357 @@ ul {
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
+}
+
+/* =============================================
+   GRADIENT BACKGROUNDS - EQUATORIAL GUINEA THEME
+============================================== */
+.gradient-bg {
+    background: var(--gradiente-hero-bandera);
+    position: relative;
+    overflow: hidden;
+}
+
+.gradient-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg,
+        rgba(206, 17, 38, 0.15) 0%,
+        transparent 20%,
+        transparent 80%,
+        rgba(0, 85, 164, 0.15) 100%);
+    pointer-events: none;
+}
+
+.gradient-bg::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.page-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* =============================================
+   ENHANCED PROFESSIONAL COMPONENTS
+============================================== */
+.feature-card {
+    background: white;
+    border-radius: var(--radio-lg);
+    padding: 2rem;
+    box-shadow: var(--sombra-suave);
+    transition: var(--transicion-rapida);
+    border: 1px solid var(--borde);
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--gradiente-verde-azul);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover::before {
+    transform: scaleX(1);
+}
+
+.feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--sombra-media);
+    border-color: var(--verde-ge);
+}
+
+.stat-card {
+    background: linear-gradient(135deg, white 0%, #f8fffe 100%);
+    border-radius: var(--radio-md);
+    padding: 1.5rem;
+    text-align: center;
+    border: 2px solid var(--borde);
+    transition: var(--transicion-rapida);
+}
+
+.stat-card:hover {
+    border-color: var(--verde-ge);
+    transform: scale(1.05);
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 900;
+    background: var(--gradiente-verde-azul);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    color: var(--texto-medio);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* =============================================
+   PROFESSIONAL MAP STYLING
+============================================== */
+.map-container {
+    border-radius: var(--radio-lg);
+    overflow: hidden;
+    box-shadow: var(--sombra-media);
+    border: 3px solid white;
+    position: relative;
+}
+
+.map-container::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radio-lg);
+    box-shadow: inset 0 0 0 1px rgba(0, 122, 51, 0.1);
+    pointer-events: none;
+}
+
+/* =============================================
+   ENHANCED HEADER STYLES
+============================================== */
+.header-banner {
+    background: linear-gradient(90deg,
+        var(--verde-ge) 0%,
+        var(--verde-ge) 33%,
+        white 33%,
+        white 66%,
+        var(--rojo-ge) 66%,
+        var(--rojo-ge) 100%);
+    height: 4px;
+    width: 100%;
+}
+
+.logo-badge {
+    background: var(--gradiente-verde-azul);
+    padding: 0.25rem;
+    border-radius: var(--radio-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* =============================================
+   PROFESSIONAL BADGES AND TAGS
+============================================== */
+.pro-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.pro-badge-verified {
+    background: linear-gradient(135deg, var(--verde-ge), #00c853);
+    color: white;
+}
+
+.pro-badge-featured {
+    background: linear-gradient(135deg, var(--dorado), #ffa000);
+    color: white;
+}
+
+.pro-badge-new {
+    background: linear-gradient(135deg, var(--azul-ge), #2196f3);
+    color: white;
+}
+
+/* =============================================
+   PROFESSIONAL PRICING DISPLAY
+============================================== */
+.price-tag {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.25rem;
+}
+
+.price-amount {
+    font-size: 2rem;
+    font-weight: 900;
+    background: var(--gradiente-verde);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.price-currency {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--texto-medio);
+}
+
+/* =============================================
+   ENHANCED SEARCH BAR
+============================================== */
+.search-bar-enhanced {
+    background: white;
+    border-radius: var(--radio-lg);
+    box-shadow: var(--sombra-media);
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    gap: 0.5rem;
+    border: 2px solid transparent;
+    transition: var(--transicion-rapida);
+}
+
+.search-bar-enhanced:focus-within {
+    border-color: var(--verde-ge);
+    box-shadow: 0 8px 30px rgba(0, 122, 51, 0.2);
+}
+
+.search-bar-enhanced input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    color: var(--texto-oscuro);
+}
+
+.search-bar-enhanced input::placeholder {
+    color: var(--texto-claro);
+}
+
+/* =============================================
+   PROFESSIONAL GRID LAYOUTS
+============================================== */
+.grid-responsive {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+@media (max-width: 768px) {
+    .grid-responsive {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+/* =============================================
+   LOADING STATES
+============================================== */
+.skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s ease-in-out infinite;
+    border-radius: var(--radio-md);
+}
+
+@keyframes loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* =============================================
+   FLOATING ACTION BUTTON
+============================================== */
+.fab {
+    position: fixed;
+    bottom: 5rem;
+    right: 2rem;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--gradiente-verde);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 20px rgba(0, 122, 51, 0.4);
+    cursor: pointer;
+    transition: var(--transicion-rapida);
+    z-index: 40;
+}
+
+.fab:hover {
+    transform: scale(1.1) translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 122, 51, 0.5);
+}
+
+/* =============================================
+   PREMIUM GLASS EFFECT
+============================================== */
+.glass-effect {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* =============================================
+   TOAST NOTIFICATIONS
+============================================== */
+.toast {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    background: white;
+    padding: 1rem 1.5rem;
+    border-radius: var(--radio-md);
+    box-shadow: var(--sombra-media);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    z-index: 1000;
+    animation: slideInRight 0.3s ease-out;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.toast-success {
+    border-left: 4px solid var(--verde-ge);
+}
+
+.toast-error {
+    border-left: 4px solid var(--rojo-ge);
+}
+
+.toast-info {
+    border-left: 4px solid var(--azul-ge);
 }
