@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Search, MapPin, Briefcase, Building2, Users, Star, TrendingUp } from 'lucide-react'
 import { supabase } from '../lib/supabase'
 import GoogleMap from '../components/Map/GoogleMap'
+import ServiceUploadForm from '../components/Services/ServiceUploadForm'
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState('')
@@ -74,26 +75,14 @@ export default function Home() {
                 Buscar
               </button>
             </div>
-
-            <div className="grid grid-cols-3 gap-6 mt-12 max-w-2xl mx-auto">
-              <div className="stat-card glass-effect">
-                <div className="stat-number">500+</div>
-                <div className="stat-label">Propiedades</div>
-              </div>
-              <div className="stat-card glass-effect">
-                <div className="stat-number">1000+</div>
-                <div className="stat-label">Profesionales</div>
-              </div>
-              <div className="stat-card glass-effect">
-                <div className="stat-number">100+</div>
-                <div className="stat-label">Servicios</div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
 
       <div className="page-container py-16">
+        <div className="mb-16">
+          <ServiceUploadForm />
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
           <Link
             to="/services"
