@@ -1,12 +1,14 @@
 import { useState } from 'react'
 import { useAuth } from '../../contexts/AuthContext'
-import { UserPlus, Mail, Lock, User, Phone } from 'lucide-react'
+import { Mail, Lock, User, Phone } from 'lucide-react'
 
 interface RegisterProps {
-  onSwitchToLogin: () => void
+  onSwitchToLogin?: () => void
+  onSuccess?: () => void
+  inModal?: boolean
 }
 
-export default function Register({ onSwitchToLogin }: RegisterProps) {
+export default function Register({ onSwitchToLogin, onSuccess, inModal = false }: RegisterProps) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [fullName, setFullName] = useState('')
@@ -35,10 +37,108 @@ export default function Register({ onSwitchToLogin }: RegisterProps) {
     } else {
       setSuccess(true)
       setLoading(false)
-      setTimeout(() => {
-        onSwitchToLogin()
-      }, 2000)
+      if (onSuccess) {
+        setTimeout(() => {
+          onSuccess()
+        }, 1500)
+      } else if (onSwitchToLogin) {
+        setTimeout(() => {
+          onSwitchToLogin()
+        }, 2000)
+      }
     }
+  }
+
+  const formContent = (
+    <>
+      {error && (
+        <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-4">
+          <p className="text-sm font-medium">{error}</p>
+        </div>
+      )}
+
+      {success && (
+        <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-lg mb-4">
+          <p className="text-sm font-medium">¡Cuenta creada exitosamente!</p>
+        </div>
+      )}
+
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label className="block text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
+            <User className="w-4 h-4" />
+            Nombre Completo
+          </label>
+          <input
+            type="text"
+            value={fullName}
+            onChange={(e) => setFullName(e.target.value)}
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent"
+            placeholder="Juan Pérez"
+            required
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
+            <Mail className="w-4 h-4" />
+            Correo Electrónico
+          </label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent"
+            placeholder="tu@email.com"
+            required
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
+            <Phone className="w-4 h-4" />
+            Teléfono
+            <span className="text-gray-400 text-xs font-normal">(Opcional)</span>
+          </label>
+          <input
+            type="tel"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent"
+            placeholder="+240 XXX XXX XXX"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
+            <Lock className="w-4 h-4" />
+            Contraseña
+          </label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent"
+            placeholder="••••••••"
+            required
+            minLength={6}
+          />
+          <p className="text-xs text-gray-500 mt-1">Mínimo 6 caracteres</p>
+        </div>
+
+        <button
+          type="submit"
+          disabled={loading || success}
+          className="w-full px-6 py-3 text-white bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 rounded-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+        >
+          {loading ? 'Creando cuenta...' : success ? '✓ Cuenta creada' : 'Crear Cuenta'}
+        </button>
+      </form>
+    </>
+  )
+
+  if (inModal) {
+    return formContent
   }
 
   return (
@@ -61,130 +161,26 @@ export default function Register({ onSwitchToLogin }: RegisterProps) {
 
         <div className="feature-card p-10 animate-fade-in glass-effect" style={{ animationDelay: '0.1s' }}>
           <div className="text-center mb-8">
-            <div className="inline-flex items-center gap-3 mb-3">
-              <UserPlus className="text-green-ge w-7 h-7" />
-              <h2 className="text-3xl font-black text-gray-900">
-                Crear Cuenta
-              </h2>
-            </div>
+            <h2 className="text-3xl font-black text-gray-900 mb-2">
+              Crear Cuenta
+            </h2>
             <p className="text-gray-600">Únete a la comunidad abitaX</p>
           </div>
+          {formContent}
 
-          {error && (
-            <div className="bg-red-50 border-l-4 border-red-500 text-red-700 px-6 py-4 rounded-lg mb-6 flex items-start gap-3">
-              <span className="text-2xl">⚠️</span>
-              <div>
-                <p className="font-semibold">Error al crear cuenta</p>
-                <p className="text-sm">{error}</p>
-              </div>
-            </div>
-          )}
-
-          {success && (
-            <div className="bg-green-50 border-l-4 border-green-500 text-green-700 px-6 py-4 rounded-lg mb-6 flex items-start gap-3">
-              <span className="text-2xl">✓</span>
-              <div>
-                <p className="font-semibold">¡Éxito!</p>
-                <p className="text-sm">Cuenta creada exitosamente. Redirigiendo...</p>
-              </div>
-            </div>
-          )}
-
-          <form onSubmit={handleSubmit} className="space-y-5">
-            <div>
-              <label className="block text-sm font-bold text-gray-700 mb-3 flex items-center gap-2">
-                <User className="w-5 h-5 text-green-ge" />
-                Nombre Completo
-              </label>
-              <input
-                type="text"
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
-                className="input-field text-lg"
-                placeholder="Juan Pérez"
-                required
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-bold text-gray-700 mb-3 flex items-center gap-2">
-                <Mail className="w-5 h-5 text-green-ge" />
-                Correo Electrónico
-              </label>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="input-field text-lg"
-                placeholder="tu@email.com"
-                required
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-bold text-gray-700 mb-3 flex items-center gap-2">
-                <Phone className="w-5 h-5 text-green-ge" />
-                Teléfono
-                <span className="text-gray-400 text-xs font-normal">(Opcional)</span>
-              </label>
-              <input
-                type="tel"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                className="input-field text-lg"
-                placeholder="+240 XXX XXX XXX"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-bold text-gray-700 mb-3 flex items-center gap-2">
-                <Lock className="w-5 h-5 text-green-ge" />
-                Contraseña
-              </label>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="input-field text-lg"
-                placeholder="••••••••"
-                required
-                minLength={6}
-              />
-              <p className="text-sm text-gray-500 mt-2 flex items-center gap-2">
-                <span className="text-green-ge">ℹ️</span>
-                Mínimo 6 caracteres
+          {onSwitchToLogin && (
+            <div className="mt-8 text-center">
+              <p className="text-gray-600 text-lg">
+                ¿Ya tienes cuenta?{' '}
+                <button
+                  onClick={onSwitchToLogin}
+                  className="text-green-ge hover:text-green-dark font-bold underline"
+                >
+                  Inicia sesión aquí
+                </button>
               </p>
             </div>
-
-            <button
-              type="submit"
-              disabled={loading || success}
-              className="btn-primary w-full text-lg py-4 disabled:opacity-50 disabled:cursor-not-allowed font-bold shadow-lg mt-6"
-            >
-              {loading ? (
-                <span className="flex items-center justify-center gap-2">
-                  <div className="w-5 h-5 border-3 border-white border-t-transparent rounded-full animate-spin"></div>
-                  Creando cuenta...
-                </span>
-              ) : success ? (
-                '✓ Cuenta creada'
-              ) : (
-                'Crear Cuenta'
-              )}
-            </button>
-          </form>
-
-          <div className="mt-8 text-center">
-            <p className="text-gray-600 text-lg">
-              ¿Ya tienes cuenta?{' '}
-              <button
-                onClick={onSwitchToLogin}
-                className="text-green-ge hover:text-green-dark font-bold underline"
-              >
-                Inicia sesión aquí
-              </button>
-            </p>
-          </div>
+          )}
         </div>
       </div>
     </div>
