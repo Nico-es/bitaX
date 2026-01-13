@@ -1,5 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Montserrat:wght@700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
 
+/* Utility classes */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
 /* =============================================
    VARIABLES Y CONFIGURACIÓN GLOBAL
    Colores inspirados en la bandera de Guinea Ecuatorial
