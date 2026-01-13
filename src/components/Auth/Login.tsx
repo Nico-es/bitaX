@@ -1,12 +1,14 @@
 import { useState } from 'react'
 import { useAuth } from '../../contexts/AuthContext'
-import { LogIn, Mail, Lock } from 'lucide-react'
+import { Mail, Lock } from 'lucide-react'
 
 interface LoginProps {
-  onSwitchToRegister: () => void
+  onSwitchToRegister?: () => void
+  onSuccess?: () => void
+  inModal?: boolean
 }
 
-export default function Login({ onSwitchToRegister }: LoginProps) {
+export default function Login({ onSwitchToRegister, onSuccess, inModal = false }: LoginProps) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
@@ -22,9 +24,65 @@ export default function Login({ onSwitchToRegister }: LoginProps) {
 
     if (error) {
       setError(error.message)
+      setLoading(false)
+    } else {
+      setLoading(false)
+      onSuccess?.()
     }
+  }
 
-    setLoading(false)
+  const formContent = (
+    <>
+      {error && (
+        <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-4">
+          <p className="text-sm font-medium">{error}</p>
+        </div>
+      )}
+
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label className="block text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
+            <Mail className="w-4 h-4" />
+            Correo Electrónico
+          </label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent"
+            placeholder="tu@email.com"
+            required
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
+            <Lock className="w-4 h-4" />
+            Contraseña
+          </label>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent"
+            placeholder="••••••••"
+            required
+          />
+        </div>
+
+        <button
+          type="submit"
+          disabled={loading}
+          className="w-full px-6 py-3 text-white bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 rounded-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+        >
+          {loading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
+        </button>
+      </form>
+    </>
+  )
+
+  if (inModal) {
+    return formContent
   }
 
   return (
@@ -47,83 +105,26 @@ export default function Login({ onSwitchToRegister }: LoginProps) {
 
         <div className="feature-card p-10 animate-fade-in glass-effect" style={{ animationDelay: '0.1s' }}>
           <div className="text-center mb-8">
-            <div className="inline-flex items-center gap-3 mb-3">
-              <LogIn className="text-green-ge w-7 h-7" />
-              <h2 className="text-3xl font-black text-gray-900">
-                Iniciar Sesión
-              </h2>
-            </div>
+            <h2 className="text-3xl font-black text-gray-900 mb-2">
+              Iniciar Sesión
+            </h2>
             <p className="text-gray-600">Accede a tu cuenta abitaX</p>
           </div>
+          {formContent}
 
-          {error && (
-            <div className="bg-red-50 border-l-4 border-red-500 text-red-700 px-6 py-4 rounded-lg mb-6 flex items-start gap-3">
-              <span className="text-2xl">⚠️</span>
-              <div>
-                <p className="font-semibold">Error de autenticación</p>
-                <p className="text-sm">{error}</p>
-              </div>
+          {onSwitchToRegister && (
+            <div className="mt-8 text-center">
+              <p className="text-gray-600 text-lg">
+                ¿No tienes cuenta?{' '}
+                <button
+                  onClick={onSwitchToRegister}
+                  className="text-green-ge hover:text-green-dark font-bold underline"
+                >
+                  Regístrate aquí
+                </button>
+              </p>
             </div>
           )}
-
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div>
-              <label className="block text-sm font-bold text-gray-700 mb-3 flex items-center gap-2">
-                <Mail className="w-5 h-5 text-green-ge" />
-                Correo Electrónico
-              </label>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="input-field text-lg"
-                placeholder="tu@email.com"
-                required
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-bold text-gray-700 mb-3 flex items-center gap-2">
-                <Lock className="w-5 h-5 text-green-ge" />
-                Contraseña
-              </label>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="input-field text-lg"
-                placeholder="••••••••"
-                required
-              />
-            </div>
-
-            <button
-              type="submit"
-              disabled={loading}
-              className="btn-primary w-full text-lg py-4 disabled:opacity-50 disabled:cursor-not-allowed font-bold shadow-lg"
-            >
-              {loading ? (
-                <span className="flex items-center justify-center gap-2">
-                  <div className="w-5 h-5 border-3 border-white border-t-transparent rounded-full animate-spin"></div>
-                  Iniciando sesión...
-                </span>
-              ) : (
-                'Iniciar Sesión'
-              )}
-            </button>
-          </form>
-
-          <div className="mt-8 text-center">
-            <p className="text-gray-600 text-lg">
-              ¿No tienes cuenta?{' '}
-              <button
-                onClick={onSwitchToRegister}
-                className="text-green-ge hover:text-green-dark font-bold underline"
-              >
-                Regístrate aquí
-              </button>
-            </p>
-          </div>
         </div>
       </div>
     </div>
