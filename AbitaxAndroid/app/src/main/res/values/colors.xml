@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="green_ge">#007A33</color>
+    <color name="white_ge">#FFFFFF</color>
+    <color name="red_ge">#CE1126</color>
+    <color name="blue_ge">#0055A4</color>
+    <color name="gold_ge">#FFD700</color>
+
+    <color name="green_light">#E8F5E9</color>
+    <color name="green_dark">#006028</color>
+    <color name="red_light">#FFEBEE</color>
+    <color name="blue_light">#E3F2FD</color>
+
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="gray_light">#F5F5F5</color>
+    <color name="gray_medium">#9E9E9E</color>
+    <color name="gray_dark">#424242</color>
+
+    <color name="primary">@color/green_ge</color>
+    <color name="primary_variant">@color/green_dark</color>
+    <color name="secondary">@color/blue_ge</color>
+    <color name="background">@color/white</color>
+</resources>

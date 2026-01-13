@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">abitaX</string>
+    <string name="welcome">Welcome to abitaX!</string>
+    <string name="tagline">The SuperApp of Equatorial Guinea</string>
+    <string name="find_professionals">Find professionals</string>
+    <string name="find_properties">Find properties</string>
+    <string name="explore_map">Explore map</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="logout">Logout</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="phone">Phone</string>
+    <string name="full_name">Full name</string>
+    <string name="services">Services</string>
+    <string name="properties">Properties</string>
+    <string name="professionals">Professionals</string>
+    <string name="profile">Profile</string>
+    <string name="loading">Loading...</string>
+</resources>
